@@ -15,5 +15,5 @@ A fast, static, single-page site for Rochester Boat Company (Rochester, IN). No 
 
 ## Before going live
 - **Quote form:** set `FORM_ENDPOINT` at the top of `script.js` to a form handler URL (e.g. Formspree). Until then the form tells visitors to call.
-- **Photos:** artwork is built from CSS/SVG. Swap in real photos of inventory, the shop and the crew for maximum impact.
+- **Photos:** add them to `images/` using the filenames in `images/README.md`. Until then each photo spot shows a labeled placeholder.
 - Check the lineup, counties served and hours against current offerings.
