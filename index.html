@@ -334,6 +334,25 @@
     </div>
   </footer>
 
+  <!-- Barge: drives across during Services, then cruises along the bottom for the rest of the page.
+       Drop a cut-out photo at images/barge.png (bow facing right); the outline below shows until then. -->
+  <div class="barge" id="barge" aria-hidden="true">
+    <span class="wake"></span>
+    <div class="barge-body">
+      <img src="images/barge.png" alt="" onerror="this.remove()">
+      <svg class="barge-ph" viewBox="0 0 420 130">
+        <path d="M30 58h300v-8h-6V18H214l-14 32h-56v8" fill="none" stroke="#ffd400" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M206 18h126" stroke="#ffd400" stroke-width="5" stroke-linecap="round"/>
+        <path d="M222 18v32M320 18v32" stroke="#ffd400" stroke-width="2.5"/>
+        <path d="M18 58h372l-26 40H44z" fill="#161719" stroke="#ffd400" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M30 74h352" stroke="#ffd400" stroke-width="2"/>
+        <path d="M14 48h28v26H14z" fill="#0a0a0a" stroke="#ffd400" stroke-width="2.5"/>
+        <path d="M22 74v30h10V74" fill="none" stroke="#ffd400" stroke-width="2.5"/>
+        <text x="210" y="122" text-anchor="middle" fill="#ffd400" font-family="Cinzel, serif" font-size="13" letter-spacing="4">BARGE PHOTO</text>
+      </svg>
+    </div>
+  </div>
+
   <div class="dock-bar" aria-label="Quick contact">
     <a href="tel:+15747211811">Call</a>
     <a href="sms:+15747211811" class="y">Text</a>

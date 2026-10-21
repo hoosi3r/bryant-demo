@@ -253,10 +253,49 @@ if (finePointer && !reduceMotion) {
   });
 }
 
+// ---------- Barge ----------
+// Drives across the screen while the Services cards stack, then shrinks and
+// keeps cruising along the bottom edge until it reaches the right side at the end of the page.
+const barge = $("#barge");
+const services = $("#services");
+let bx = 0, bs = 1, wake = 0;
+
+function bargeTarget() {
+  const y = scrollY, vh = innerHeight, vw = innerWidth;
+  const w = barge.offsetWidth;
+  const s0 = services.offsetTop - vh * 0.6;                     // barge appears
+  const s1 = services.offsetTop + services.offsetHeight - vh;   // services stack finished
+  const end = document.documentElement.scrollHeight - vh;
+  const small = 0.42;
+  if (y < s0) return { x: -w, s: 1, on: false };
+  if (y < s1) {
+    // across most of the screen during Services
+    const t = (y - s0) / (s1 - s0);
+    return { x: lerp(-w * 0.2, (vw - w) * 0.62, t), s: 1, on: true };
+  }
+  // rest of the page: shrink quickly, then finish the trip to the right edge
+  const t = clamp((y - s1) / (end - s1));
+  const shrink = clamp(t / 0.12);
+  return { x: lerp((vw - w) * 0.62, vw - w * small - 16, t), s: lerp(1, small, shrink), on: true };
+}
+
+function moveBarge() {
+  const { x, s, on } = bargeTarget();
+  barge.classList.toggle("on", on);
+  const dx = x - bx;
+  bx = lerp(bx, x, 0.08);
+  bs = lerp(bs, s, 0.08);
+  wake = lerp(wake, Math.min(Math.abs(dx) * 1.4, 220), 0.1);
+  if (Math.abs(dx) > 1) barge.classList.toggle("left", dx < 0);
+  barge.style.transform = `translateX(${bx}px) scale(${bs})`;
+  barge.style.setProperty("--wake", wake.toFixed(1));
+}
+
 // ---------- One animation loop ----------
 function loop(t) {
   if (lenis) lenis.raf(t);
   if (!reduceMotion) {
+    moveBarge();
     // marquee
     if (Math.abs(velocity) > 0.5) mDir = velocity > 0 ? -1 : 1;
     mBoost = lerp(mBoost, Math.min(Math.abs(velocity) * 0.6, 18), 0.1);

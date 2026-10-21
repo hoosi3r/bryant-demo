@@ -143,7 +143,7 @@ p { margin: 0 0 1em; }
 /* Services: stacking sticky cards */
 .services { padding: clamp(60px, 8vw, 100px) 0 clamp(100px, 12vw, 160px); }
 .stack { display: grid; gap: 40px; }
-.stack-card { position: sticky; top: calc(90px + var(--i) * 22px); height: min(78vh, 680px); display: grid; grid-template-columns: 1.25fr 1fr; background: var(--char); border-top: 3px solid var(--yellow); overflow: hidden; box-shadow: 0 -30px 60px rgba(0, 0, 0, .5); transform-origin: 50% 0; will-change: transform; }
+.stack-card { position: sticky; top: calc(90px + var(--i) * 22px); height: min(70vh, 620px); display: grid; grid-template-columns: 1.25fr 1fr; background: var(--char); border-top: 3px solid var(--yellow); overflow: hidden; box-shadow: 0 -30px 60px rgba(0, 0, 0, .5); transform-origin: 50% 0; will-change: transform; }
 .stack-card .media { height: 100%; }
 .stack-copy { padding: clamp(28px, 4.5vw, 64px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
 .stack-copy .n { font: 700 1rem var(--serif); color: var(--yellow); margin-bottom: 16px; letter-spacing: .1em; }
@@ -359,6 +359,20 @@ p { margin: 0 0 1em; }
 
 /* ---------- Transitions ---------- */
 
+/* Barge: fixed at the bottom of the screen; script.js drives position, size and direction */
+.barge { position: fixed; left: 0; bottom: 14px; z-index: 80; width: clamp(170px, 22vw, 320px); pointer-events: none; transform-origin: 0 100%; will-change: transform; opacity: 0; transition: opacity .6s; }
+.barge.on { opacity: 1; }
+.barge-body { position: relative; animation: bob 3.2s ease-in-out infinite; }
+.barge-body img, .barge-ph { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .55)); }
+.barge-body img + .barge-ph { display: none; }
+.barge.left .barge-body img, .barge.left .barge-ph { transform: scaleX(-1); }
+.barge.left .barge-ph text { display: none; }
+@keyframes bob { 50% { transform: translateY(5px) rotate(-.7deg); } }
+.wake { position: absolute; bottom: 10%; right: 92%; height: 3px; width: calc(var(--wake, 0) * 1px); border-radius: 3px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .75)); box-shadow: 0 0 10px rgba(255, 255, 255, .4); }
+.barge.left .wake { right: auto; left: 92%; background: linear-gradient(270deg, transparent, rgba(255, 255, 255, .75)); }
+@media (max-width: 900px) { .barge { bottom: 66px; } }
+
+
 /* Headings rise in word by word */
 .split .wd { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; margin-bottom: -.06em; }
 .split .wd > span { display: inline-block; transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: calc(var(--wi) * 45ms); }
@@ -423,4 +437,5 @@ p { margin: 0 0 1em; }
   .split .wd > span, .foot-word .ch { transform: none; opacity: 1; }
   .media.reveal img { clip-path: none; }
   .wipe { display: none; }
+  .barge { display: none; }
 }
