@@ -141,7 +141,7 @@ p { margin: 0 0 1em; }
 .media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); will-change: transform; }
 
 /* Services: stacking sticky cards */
-.services { padding: clamp(60px, 8vw, 100px) 0 clamp(100px, 12vw, 160px); background: var(--black); }
+.services { padding: clamp(60px, 8vw, 100px) 0 clamp(100px, 12vw, 160px); }
 .stack { display: grid; gap: 40px; }
 .stack-card { position: sticky; top: calc(90px + var(--i) * 22px); height: min(78vh, 680px); display: grid; grid-template-columns: 1.25fr 1fr; background: var(--char); border-top: 3px solid var(--yellow); overflow: hidden; box-shadow: 0 -30px 60px rgba(0, 0, 0, .5); transform-origin: 50% 0; will-change: transform; }
 .stack-card .media { height: 100%; }
@@ -246,7 +246,7 @@ p { margin: 0 0 1em; }
 .shot-end em { font-style: normal; font-weight: 600; }
 
 /* Why */
-.why { padding: clamp(110px, 13vw, 170px) 0; background: var(--black); }
+.why { padding: clamp(110px, 13vw, 170px) 0; }
 .why-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); position: relative; z-index: 0; }
 .why-list li { display: grid; grid-template-columns: 80px 1fr 1.2fr; gap: 30px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--line); position: relative; transition: padding .5s var(--ease), color .3s; }
 .why-list li::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--yellow); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease); }
@@ -279,7 +279,7 @@ p { margin: 0 0 1em; }
 .form-msg a { color: var(--yellow); }
 
 /* Social */
-.social { padding: clamp(90px, 10vw, 130px) 0; text-align: center; background: var(--char); }
+.social { padding: clamp(90px, 10vw, 130px) 0; text-align: center; }
 .social h2 { margin-bottom: 40px; }
 .social-row { display: flex; justify-content: center; gap: clamp(12px, 3vw, 30px); flex-wrap: wrap; }
 .social-row a { width: clamp(120px, 16vw, 170px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; border: 3px solid var(--yellow); text-decoration: none; font: 700 .85rem var(--serif); letter-spacing: .12em; text-transform: uppercase; transition: background .35s, color .35s, transform .5s var(--ease); }
@@ -287,7 +287,7 @@ p { margin: 0 0 1em; }
 .social-row a[hidden] { display: none; }
 
 /* Footer */
-.footer { position: relative; background: var(--black); border-top: 3px solid var(--yellow); box-shadow: 0 -40px 80px rgba(0, 0, 0, .6); padding: 60px 0 100px; overflow: hidden; }
+.footer { border-top: 1px solid var(--line); padding: 60px 0 100px; overflow: hidden; }
 .foot-word { font: 700 clamp(4rem, 22vw, 22rem)/.8 var(--serif); text-transform: uppercase; color: var(--yellow); text-align: center; letter-spacing: .02em; margin-bottom: 40px; }
 .foot-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--mute); font-size: .85rem; }
 
@@ -358,16 +358,6 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Transitions ---------- */
-
-/* Section stack: from Services on, each section pins once you've seen all of it,
-   and the next section slides up over it while it shrinks back and dims.
-   --stick is set in script.js to (viewport height - section height) so tall
-   sections finish scrolling before they pin. */
-.stack-section { position: sticky; top: var(--stick, 0px); }
-.stack-section + .stack-section { border-top: 3px solid var(--yellow); box-shadow: 0 -40px 80px rgba(0, 0, 0, .6); }
-.stack-section::after { content: ""; position: absolute; inset: 0; z-index: 50; background: #000; opacity: var(--dim, 0); pointer-events: none; }
-.measuring .stack-section { position: relative; top: 0 !important; transform: none !important; }
-
 
 /* Headings rise in word by word */
 .split .wd { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; margin-bottom: -.06em; }

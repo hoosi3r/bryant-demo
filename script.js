@@ -49,10 +49,7 @@ $$("a", links).forEach((a) => a.addEventListener("click", () => setMenu(false)))
 // ---------- Section wipe: yellow panel covers, page jumps, panel lifts away ----------
 const wipe = $(".wipe");
 function jumpTo(target) {
-  // Unpin the stack for a moment (hidden under the wipe) to measure where the section really starts
-  document.documentElement.classList.add("measuring");
   const top = target.id === "top" ? 0 : target.getBoundingClientRect().top + scrollY;
-  document.documentElement.classList.remove("measuring");
   if (lenis) lenis.scrollTo(top, { immediate: true, force: true });
   else scrollTo({ top, behavior: "instant" });
 }
@@ -156,32 +153,7 @@ let velocity = 0;
 
 function sizeWork() {
   work.style.height = isDesktop() ? `${workTrack.scrollWidth - innerWidth + innerHeight}px` : "";
-  sizeStack();
 }
-
-// ---------- Section stack ----------
-const stackSecs = $$(".stack-section");
-function sizeStack() {
-  const vh = innerHeight;
-  stackSecs.forEach((sec) => {
-    const h = sec.offsetHeight;
-    // Pin when the bottom of the section reaches the bottom of the screen
-    sec.style.setProperty("--stick", `${Math.min(0, vh - h)}px`);
-    // Shrink toward the middle of the part still on screen
-    sec.style.transformOrigin = `50% ${Math.max(h - vh, 0) + Math.min(h, vh) / 2}px`;
-  });
-}
-function updateStack(vh) {
-  stackSecs.forEach((sec, i) => {
-    const next = stackSecs[i + 1];
-    if (!next) return;
-    // 0 while the next section is below the screen, 1 once it fully covers this one
-    const p = clamp(1 - next.getBoundingClientRect().top / vh);
-    sec.style.transform = p > 0 ? `scale(${1 - p * 0.05})` : "";
-    sec.style.setProperty("--dim", (p * 0.65).toFixed(3));
-  });
-}
-new ResizeObserver(() => sizeStack()).observe(document.querySelector("main"));
 
 function onScroll() {
   const y = scrollY;
@@ -196,8 +168,6 @@ function onScroll() {
   dockBar.classList.toggle("show", y > vh * 0.9);
 
   if (!reduceMotion) {
-    updateStack(vh);
-
     const hp = clamp(y / (hero.offsetHeight - vh));
     heroMedia.style.transform = `scale(${1 + hp * 0.3})`;
     heroCopy.style.transform = `translateY(${-hp * 140}px)`;
