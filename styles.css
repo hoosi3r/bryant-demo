@@ -360,17 +360,20 @@ p { margin: 0 0 1em; }
 /* ---------- Transitions ---------- */
 
 /* Barge: fixed at the bottom of the screen; script.js drives position, size and direction */
-.barge { position: fixed; left: 0; bottom: 14px; z-index: 80; width: clamp(170px, 22vw, 320px); pointer-events: none; transform-origin: 0 100%; will-change: transform; opacity: 0; transition: opacity .6s; }
+.barge { position: fixed; left: 0; bottom: 14px; z-index: 80; width: clamp(170px, 26vw, 400px); pointer-events: none; transform-origin: 0 100%; will-change: transform; opacity: 0; transition: opacity .6s; }
 .barge.on { opacity: 1; }
 .barge-body { position: relative; animation: bob 3.2s ease-in-out infinite; }
 .barge-body img, .barge-ph { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .55)); }
 .barge-body img + .barge-ph { display: none; }
-.barge.left .barge-body img, .barge.left .barge-ph { transform: scaleX(-1); }
+.barge.left .barge-ph { transform: scaleX(-1); }
 .barge.left .barge-ph text { display: none; }
 @keyframes bob { 50% { transform: translateY(5px) rotate(-.7deg); } }
 .wake { position: absolute; bottom: 10%; right: 92%; height: 3px; width: calc(var(--wake, 0) * 1px); border-radius: 3px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .75)); box-shadow: 0 0 10px rgba(255, 255, 255, .4); }
 .barge.left .wake { right: auto; left: 92%; background: linear-gradient(270deg, transparent, rgba(255, 255, 255, .75)); }
-@media (max-width: 900px) { .barge { bottom: 66px; } }
+@media (max-width: 900px) {
+  .barge { bottom: 64px; }
+  .stack-card { height: min(74vh, 640px) !important; }
+}
 
 
 /* Headings rise in word by word */

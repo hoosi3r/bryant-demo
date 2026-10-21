@@ -19,4 +19,4 @@ Tips: JPG, about 2000px on the long side, under 500 KB each.
 
 ## Barge
 
-`barge.png` (not added yet): a side view of the barge cut out on a transparent background, bow facing right, about 1200px wide. It drives across the screen during Services and then cruises along the bottom of the page. Until it's added, a yellow outline placeholder shows.
+`barge.png`: cut-out side view, bow facing right, transparent background, 1400px wide. Drives across the screen during Services and then cruises along the bottom of the page. Scrolling up backs it up rather than flipping it, so the lettering never shows mirrored.
