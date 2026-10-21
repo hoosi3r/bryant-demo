@@ -31,7 +31,9 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div class="intro" aria-hidden="true"><span>Bryant</span><small>Lake &amp; Lawn</small></div>
+  <div class="intro" aria-hidden="true"><div class="half top"></div><div class="half bot"></div><div class="bar"></div><img src="images/logo.jpg" alt=""></div>
+  <div class="wipe" aria-hidden="true"><img src="images/logo.jpg" alt=""></div>
+  <div class="cursor" aria-hidden="true"><span>View</span></div><div class="cursor-dot" aria-hidden="true"></div>
   <div class="progress-bar" aria-hidden="true"><span id="progress"></span></div>
 
   <!-- NAV -->
@@ -70,11 +72,12 @@
             <a href="#contact" class="act"><span class="act-k">Start a</span><span class="act-v">Quote</span></a>
           </div>
         </div>
-        <div class="hero-ticker" id="heroTicker" aria-live="polite">
-          <div><span>Lake Manitou now</span><b id="tTemp">--</b></div>
-          <div><span>Wind</span><b id="tWind">--</b></div>
-          <div><span>Sunset</span><b id="tSunset">--</b></div>
-          <div><span>Lake day score</span><b id="tScore">--</b></div>
+        <!-- Design sample values: wire these to your own conditions feed -->
+        <div class="hero-ticker" id="heroTicker">
+          <div><span>Lake Manitou now</span><b id="tTemp">78°F</b></div>
+          <div><span>Wind</span><b id="tWind">6 mph</b></div>
+          <div><span>Sunset</span><b id="tSunset">9:12 PM</b></div>
+          <div><span>Lake day score</span><b id="tScore">9/10</b></div>
         </div>
       </div>
     </section>
@@ -229,7 +232,6 @@
             </div>
             <p class="fc-title">7-day lake day score</p>
             <div class="forecast" id="forecast"></div>
-            <p class="lake-err" id="lakeErr" hidden>Live lake forecast is unavailable right now. Call or text and we'll help you pick a day.</p>
           </div>
         </div>
       </div>
@@ -308,17 +310,18 @@
           <label>What do you need help with?<textarea name="msg" rows="4"></textarea></label>
           <button class="btn btn-y btn-full" type="submit">Send request</button>
           <p class="form-msg" id="formMsg" role="status"></p>
+          <div class="sent-msg" aria-live="polite"><svg class="check" viewBox="0 0 74 74" aria-hidden="true"><circle cx="37" cy="37" r="34"/><path d="M22 38l10 10 20-22"/></svg><b>Request sent.</b><span>We'll be in touch soon. Need it faster? Text Brady.</span></div>
         </form>
       </div>
     </section>
 
-    <!-- SOCIAL (shown once links are set in script.js) -->
-    <section class="social wrap" id="social" hidden>
+    <!-- SOCIAL: put your profile links in the hrefs -->
+    <section class="social wrap" id="social">
       <h2>Follow <em>us.</em></h2>
       <div class="social-row">
-        <a data-social="facebook" target="_blank" rel="noopener">Facebook</a>
-        <a data-social="instagram" target="_blank" rel="noopener">Instagram</a>
-        <a data-social="tiktok" target="_blank" rel="noopener">TikTok</a>
+        <a href="#" data-social="facebook">Facebook</a>
+        <a href="#" data-social="instagram">Instagram</a>
+        <a href="#" data-social="tiktok">TikTok</a>
       </div>
     </section>
   </main>
@@ -337,6 +340,7 @@
     <a href="#contact">Quote</a>
   </div>
 
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
